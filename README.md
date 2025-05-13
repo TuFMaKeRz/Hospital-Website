@@ -21,7 +21,7 @@ A responsive hospital website built with HTML5, CSS3, and JavaScript.
 2. Open `index.html` in your browser
 
 ## Live Demo
-[View Demo](#) (add your demo link here)
+(https://tufmakerz.github.io/Hospital-Website/) 
 
 
 ## Screenshots
@@ -30,8 +30,6 @@ A responsive hospital website built with HTML5, CSS3, and JavaScript.
 ![Mobile View]
 (https://github.com/user-attachments/assets/8b64fc3c-dc35-4f46-b33b-fb3c7958b28c)
 
-## License
-MIT License - Free to use and modify
 
 ## How to Contribute
 Open to improvements! Submit PRs for:
