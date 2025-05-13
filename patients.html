@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients & Visitors | MedLife General Hospital</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        /* Add these new styles for Patients page */
+        
+        .patients-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .patient-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 40px;
+        }
+        
+        .patient-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .patient-tab:hover, .patient-tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .patient-section {
+            margin-bottom: 60px;
+        }
+        
+        .patient-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .patient-info {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .patient-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .info-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-list strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .amenity-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .amenity-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 15px 20px;
+            background: var(--light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question h4 {
+            color: var(--primary);
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+ <header>
+        <div class="container header-container">
+            <div class="logo">Med<span>Life</span></div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctors.html">Doctors</a></li>
+                    <li><a href="patients.html" class="active">Patients & Visitors</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Overlay for mobile menu -->
+            <div class="overlay"></div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="patients-header">
+        <div class="container">
+            <h1>Patients & Visitors</h1>
+            <p>Information to help you prepare for your visit</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="index.html">Home</a> &raquo; <span>Patients & Visitors</span>
+    </div>
+
+    <!-- Patient Tabs -->
+    <section class="patient-tabs-section">
+        <div class="container">
+            <div class="patient-tabs">
+                <div class="patient-tab active" data-tab="patient-info">Patient Information</div>
+                <div class="patient-tab" data-tab="visitor-info">Visitor Information</div>
+                <div class="patient-tab" data-tab="amenities">Amenities</div>
+                <div class="patient-tab" data-tab="faq">FAQ</div>
+            </div>
+            
+            <!-- Patient Information Tab -->
+            <div class="tab-content active" id="patient-info">
+                <div class="patient-section">
+                    <h2>Patient Information</h2>
+                    <p>We want your experience at MedLife General Hospital to be as comfortable and stress-free as possible. Below you'll find important information to help you prepare for your visit or stay.</p>
+                    
+                    <div class="patient-grid">
+                        <div class="patient-info">
+                            <h3>Before Your Visit</h3>
+                            <ul class="info-list">
+                                <li>
+                                    <strong>Registration</strong>
+                                    <p>Please arrive 30 minutes before your scheduled appointment to complete registration. Bring your insurance card, photo ID, and any relevant medical records.</p>
+                                </li>
+                                <li>
+                                    <strong>What to Bring</strong>
+                                    <p>Current medications list, insurance information, comfortable clothing, personal toiletries, and any assistive devices you may need.</p>
+                                </li>
+                                <li>
+                                    <strong>Preparing for Procedures</strong>
+                                    <p>Follow all pre-procedure instructions provided by your doctor, including fasting guidelines if applicable.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="patient-info">
+                            <h3>During Your Stay</h3>
+                            <ul class="info-list">
+                                <li>
+                                    <strong>Your Care Team</strong>
+                                    <p>You'll be cared for by a team of specialists including your attending physician, nurses, and support staff who will coordinate your treatment plan.</p>
+                                </li>
+                                <li>
+                                    <strong>Patient Safety</strong>
+                                    <p>For your safety, please wear your ID bracelet at all times and inform staff of any allergies or special needs.</p>
+                                </li>
+                                <li>
+                                    <strong>Patient Rights</strong>
+                                    <p>You have the right to be informed about your treatment, access your medical records, and make decisions about your care.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="patient-section">
+                    <h2>Billing & Insurance</h2>
+                    <div class="patient-grid">
+                        <div class="patient-info">
+                            <h3>Insurance Information</h3>
+                            <p>We accept most major insurance plans. Please verify with your insurance provider that our hospital and physicians are in-network prior to your visit.</p>
+                            <p>Our billing department can assist with insurance questions and claims. Contact them at (800) 555-6789 or billing@medlifehospital.com.</p>
+                        </div>
+                        <div class="patient-info">
+                            <h3>Financial Assistance</h3>
+                            <p>We offer financial assistance programs for qualifying patients. Applications are available at our patient services desk or can be downloaded from our website.</p>
+                            <a href="#" class="btn">Download Forms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visitor Information Tab -->
+            <div class="tab-content" id="visitor-info">
+                <div class="patient-section">
+                    <h2>Visitor Information</h2>
+                    <p>We welcome visitors and recognize their importance in patient recovery. Please review our visitor guidelines before your visit.</p>
+                    
+                    <div class="patient-grid">
+                        <div class="patient-info">
+                            <h3>Visiting Hours</h3>
+                            <ul class="info-list">
+                                <li>
+                                    <strong>General Wards</strong>
+                                    <p>10:00 AM - 8:00 PM daily</p>
+                                </li>
+                                <li>
+                                    <strong>Intensive Care Units</strong>
+                                    <p>11:00 AM - 12:00 PM and 5:00 PM - 6:00 PM</p>
+                                </li>
+                                <li>
+                                    <strong>Maternity Ward</strong>
+                                    <p>9:00 AM - 9:00 PM (Partners may stay overnight)</p>
+                                </li>
+                                <li>
+                                    <strong>Pediatrics</strong>
+                                    <p>Parents may stay 24 hours; other visitors 10:00 AM - 8:00 PM</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="patient-info">
+                            <h3>Visitor Guidelines</h3>
+                            <ul class="info-list">
+                                <li>
+                                    <strong>Health & Safety</strong>
+                                    <p>Visitors with colds, flu, or other contagious illnesses should not visit patients.</p>
+                                </li>
+                                <li>
+                                    <strong>Number of Visitors</strong>
+                                    <p>Generally 2 visitors per patient at a time, with exceptions for special circumstances.</p>
+                                </li>
+                                <li>
+                                    <strong>Children Visitors</strong>
+                                    <p>Children under 12 must be supervised at all times and may require special permission in certain units.</p>
+                                </li>
+                                <li>
+                                    <strong>Overnight Stays</strong>
+                                    <p>Only permitted in private rooms and must be arranged in advance with nursing staff.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="patient-section">
+                    <h2>Parking & Directions</h2>
+                    <div class="patient-grid">
+                        <div class="patient-info">
+                            <h3>Parking Information</h3>
+                            <p>Visitor parking is available in the garage adjacent to the main hospital entrance. The first 30 minutes are free, with discounted rates for patients and visitors.</p>
+                            <p>Valet parking is available at the main entrance from 7:00 AM to 7:00 PM for $10.</p>
+                        </div>
+                        <div class="patient-info">
+                            <h3>Hospital Map</h3>
+                            <div class="map-container">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209179535!2d-73.9878449242648!3d40.74844097138985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1629997976903!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Amenities Tab -->
+            <div class="tab-content" id="amenities">
+                <div class="patient-section">
+                    <h2>Hospital Amenities</h2>
+                    <p>We offer various amenities to make your visit or stay more comfortable.</p>
+                    
+                    <div class="amenities-grid">
+                        <div class="amenity-card">
+                            <i class="fas fa-utensils"></i>
+                            <h3>Cafeteria</h3>
+                            <p>Open daily from 6:30 AM to 8:00 PM with a variety of healthy meal options.</p>
+                        </div>
+                        <div class="amenity-card">
+                            <i class="fas fa-coffee"></i>
+                            <h3>Coffee Shop</h3>
+                            <p>Located in the main lobby, serving Starbucks coffee and light snacks from 6:00 AM to 8:00 PM.</p>
+                        </div>
+                        <div class="amenity-card">
+                            <i class="fas fa-gift"></i>
+                            <h3>Gift Shop</h3>
+                            <p>Offers flowers, gifts, cards, and personal items. Open Monday-Friday 9:00 AM to 7:00 PM.</p>
+                        </div>
+                        <div class="amenity-card">
+                            <i class="fas fa-wifi"></i>
+                            <h3>Free WiFi</h3>
+                            <p>Available throughout the hospital. Connect to "MedLife Guest" network.</p>
+                        </div>
+                        <div class="amenity-card">
+                            <i class="fas fa-praying-hands"></i>
+                            <h3>Chapel</h3>
+                            <p>Open 24/7 for prayer and meditation, located on the first floor near the main lobby.</p>
+                        </div>
+                        <div class="amenity-card">
+                            <i class="fas fa-atm"></i>
+                            <h3>ATM</h3>
+                            <p>Located near the gift shop for your convenience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Tab -->
+            <div class="tab-content" id="faq">
+                <div class="patient-section">
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How do I get copies of my medical records?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can request copies of your medical records by completing an Authorization for Release of Health Information form, available at our medical records department or on our website. Please allow 7-10 business days for processing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What payment methods do you accept?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept cash, personal checks, money orders, and all major credit cards. Payment plans may be available for qualifying patients.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Can I choose my own doctor?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you may choose your attending physician if they have admitting privileges at our hospital. If you don't have a doctor, we can help you select one from our medical staff.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How do I provide feedback about my experience?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We welcome your feedback. You may complete a patient satisfaction survey after discharge, speak with our patient relations representative, or submit comments through our website.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What are my rights as a patient?</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Patients have the right to considerate and respectful care, complete information about their diagnosis and treatment, participate in care decisions, privacy and confidentiality, and to voice grievances. A complete list of patient rights is provided upon admission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Maternity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Patient Resources</h3>
+                    <ul>
+                        <li><a href="#">Patient Portal</a></li>
+                        <li><a href="#">Billing & Insurance</a></li>
+                        <li><a href="#">Medical Records</a></li>
+                        <li><a href="#">Visitor Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Health City, HC 12345</p>
+                        <p><i class="fas fa-phone"></i> (800) 555-1234</p>
+                        <p><i class="fas fa-envelope"></i> info@medlifehospital.com</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MedLife General Hospital. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple tab functionality
+        document.querySelectorAll('.patient-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.patient-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

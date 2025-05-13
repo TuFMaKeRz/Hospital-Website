@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | MedLife General Hospital</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        /* Add these new styles for Contact page */
+        /* Contact Header - Mobile Responsive */
+.contact-header {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1489769002049-ccd828976a6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 200px; /* Reduced height for mobile */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px; /* Reduced margin for mobile */
+    padding: 0 15px; /* Added padding for better edge spacing */
+}
+
+/* Contact Section - Mobile Responsive */
+.contact-section {
+    padding: 30px 0; /* Reduced padding for mobile */
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 30px; /* Reduced gap for mobile */
+    padding: 0 15px; /* Added side padding */
+}
+
+/* Contact Info - Mobile Responsive */
+.contact-info {
+    background: var(--light);
+    padding: 20px; /* Reduced padding for mobile */
+    border-radius: 8px; /* Slightly smaller radius */
+    margin: 0 15px; /* Added side margins */
+}
+
+.contact-info h3 {
+    color: var(--primary);
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 1.3rem; /* Slightly smaller font */
+}
+
+.contact-method {
+    display: flex;
+    margin-bottom: 15px; /* Reduced margin */
+    align-items: flex-start; /* Better alignment */
+}
+
+.contact-icon {
+    font-size: 1.2rem; /* Smaller icons */
+    color: var(--primary);
+    margin-right: 12px; /* Reduced margin */
+    width: 30px; /* Smaller width */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.contact-details h4 {
+    margin-bottom: 5px;
+    font-size: 1rem; /* Smaller heading */
+}
+
+.contact-details p, 
+.contact-details a {
+    color: #555;
+    text-decoration: none;
+    font-size: 0.9rem; /* Slightly smaller text */
+    line-height: 1.5; /* Better line spacing */
+}
+
+/* Contact Form - Mobile Responsive */
+.contact-form {
+    background: white;
+    padding: 20px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* Lighter shadow */
+    margin: 0 15px; /* Added side margins */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px; /* Reduced margin */
+    font-weight: 500;
+    font-size: 0.95rem; /* Slightly smaller labels */
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+    width: 100%;
+    padding: 10px 12px; /* Slightly reduced padding */
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Smaller radius */
+    font-family: inherit;
+    font-size: 0.95rem; /* Slightly smaller font */
+}
+
+.form-group textarea {
+    height: 120px; /* Reduced height */
+}
+
+/* Locations Section - Mobile Responsive */
+.locations-section {
+    padding: 30px 0; /* Reduced padding */
+    background: var(--light);
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 20px; /* Reduced gap */
+    padding: 0 15px; /* Added side padding */
+}
+
+.location-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* Lighter shadow */
+}
+
+.location-img {
+    height: 160px; /* Reduced height */
+    overflow: hidden;
+}
+
+.location-content {
+    padding: 20px; /* Reduced padding */
+}
+
+.location-content h3 {
+    color: var(--primary);
+    margin-bottom: 8px; /* Reduced margin */
+    font-size: 1.2rem; /* Smaller heading */
+}
+
+.location-meta {
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+.location-meta p {
+    margin-bottom: 6px; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem; /* Smaller text */
+}
+
+.location-meta i {
+    margin-right: 8px; /* Reduced margin */
+    color: var(--primary);
+    font-size: 1rem; /* Smaller icons */
+}
+
+/* Emergency Contact - Mobile Responsive */
+.emergency-contact {
+    padding: 30px 15px; /* Reduced padding and added side padding */
+    text-align: center;
+}
+
+.emergency-box {
+    background: var(--accent);
+    color: white;
+    padding: 25px; /* Reduced padding */
+    border-radius: 8px;
+    max-width: 100%; /* Full width on mobile */
+    margin: 0 auto;
+}
+
+.emergency-box h2 {
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 1.5rem; /* Smaller heading */
+}
+
+.emergency-box p {
+    margin-bottom: 20px; /* Reduced margin */
+    font-size: 1rem; /* Smaller text */
+}
+
+.emergency-number {
+    font-size: 1.5rem; /* Smaller number */
+    font-weight: bold;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+    .contact-header {
+        height: 300px;
+        margin-bottom: 60px;
+        padding: 0;
+    }
+    
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 0;
+    }
+    
+    .contact-info {
+        padding: 30px;
+        border-radius: 10px;
+        margin: 0;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-method {
+        margin-bottom: 20px;
+    }
+    
+    .contact-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        width: 40px;
+    }
+    
+    .contact-details h4 {
+        font-size: 1.1rem;
+    }
+    
+    .contact-details p, 
+    .contact-details a {
+        font-size: 1rem;
+    }
+    
+    .contact-form {
+        padding: 30px;
+        margin: 0;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        font-size: 1rem;
+    }
+    
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    .form-group textarea {
+        height: 150px;
+    }
+    
+    .locations-section {
+        padding: 60px 0;
+    }
+    
+    .locations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 0;
+    }
+    
+    .location-img {
+        height: 200px;
+    }
+    
+    .location-content {
+        padding: 25px;
+    }
+    
+    .location-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .location-meta p {
+        font-size: 1rem;
+    }
+    
+    .emergency-contact {
+        padding: 60px 0;
+    }
+    
+    .emergency-box {
+        padding: 40px;
+        max-width: 800px;
+    }
+    
+    .emergency-box h2 {
+        font-size: 1.8rem;
+    }
+    
+    .emergency-box p {
+        font-size: 1.1rem;
+    }
+    
+    .emergency-number {
+        font-size: 2rem;
+    }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1200px) {
+    .contact-grid {
+        gap: 50px;
+    }
+    
+    .locations-grid {
+        gap: 40px;
+    }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+ <header>
+        <div class="container header-container">
+            <div class="logo">Med<span>Life</span></div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctors.html">Doctors</a></li>
+                    <li><a href="patients.html">Patients & Visitors</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Overlay for mobile menu -->
+            <div class="overlay"></div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="contact-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to help and answer any questions you may have</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="index.html">Home</a> &raquo; <span>Contact</span>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Main Hospital</h4>
+                            <p>123 Medical Drive, Health City, HC 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>General Inquiries</h4>
+                            <p><a href="tel:+18005551234">(800) 555-1234</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Us</h4>
+                            <p><a href="mailto:info@medlifehospital.com">info@medlifehospital.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Hours</h4>
+                            <p>Monday-Friday: 8:00 AM - 8:00 PM<br>
+                            Saturday: 9:00 AM - 5:00 PM<br>
+                            Sunday: Closed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fab fa-weixin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Live Chat</h4>
+                            <p>Available Monday-Friday 9:00 AM - 5:00 PM</p>
+                            <a href="#" class="btn">Start Chat</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject">
+                                <option value="">Select a subject</option>
+                                <option value="appointment">Appointment Inquiry</option>
+                                <option value="billing">Billing Question</option>
+                                <option value="feedback">Feedback/Suggestion</option>
+                                <option value="medical">Medical Question</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section">
+        <div class="container">
+            <h2 class="text-center">Our Locations</h2>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-img">
+                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Main Hospital">
+                    </div>
+                    <div class="location-content">
+                        <h3>Main Hospital</h3>
+                        <div class="location-meta">
+                            <p><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Health City</p>
+                            <p><i class="fas fa-phone-alt"></i> (800) 555-1234</p>
+                            <p><i class="fas fa-clock"></i> Open 24/7</p>
+                        </div>
+                        <a href="#" class="btn">Get Directions</a>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-img">
+                        <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="North Clinic">
+                    </div>
+                    <div class="location-content">
+                        <h3>North Clinic</h3>
+                        <div class="location-meta">
+                            <p><i class="fas fa-map-marker-alt"></i> 456 Wellness Ave, North District</p>
+                            <p><i class="fas fa-phone-alt"></i> (800) 555-5678</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-8PM, Sat: 9AM-5PM</p>
+                        </div>
+                        <a href="#" class="btn">Get Directions</a>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-img">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="South Clinic">
+                    </div>
+                    <div class="location-content">
+                        <h3>South Clinic</h3>
+                        <div class="location-meta">
+                            <p><i class="fas fa-map-marker-alt"></i> 789 Care Blvd, South District</p>
+                            <p><i class="fas fa-phone-alt"></i> (800) 555-9012</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM, Sat: 9AM-1PM</p>
+                        </div>
+                        <a href="#" class="btn">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact -->
+    <section class="emergency-contact">
+        <div class="container">
+            <div class="emergency-box">
+                <h2>Emergency Contact</h2>
+                <p>If you are experiencing a medical emergency, please call 911 or go to the nearest emergency room. Our emergency department is open 24/7 to provide immediate care.</p>
+                <div class="emergency-number">
+                    <i class="fas fa-phone-alt"></i> (800) 555-EMER (3637)
+                </div>
+                <a href="#" class="btn btn-accent">Emergency Information</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Maternity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Patient Resources</h3>
+                    <ul>
+                        <li><a href="#">Patient Portal</a></li>
+                        <li><a href="#">Billing & Insurance</a></li>
+                        <li><a href="#">Medical Records</a></li>
+                        <li><a href="#">Visitor Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Health City, HC 12345</p>
+                        <p><i class="fas fa-phone"></i> (800) 555-1234</p>
+                        <p><i class="fas fa-envelope"></i> info@medlifehospital.com</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MedLife General Hospital. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors | MedLife General Hospital</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        /* Add these new styles for Doctors page */
+        
+        .doctors-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550831107-1553da8c8464?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .doctor-search {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .search-group {
+            margin-bottom: 0;
+        }
+        
+        .search-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .search-group input, .search-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .search-button {
+            align-self: end;
+        }
+        
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .doctor-img {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .doctor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .doctor-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .doctor-info h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .doctor-specialty {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .doctor-bio {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .doctor-meta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .meta-item i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+        
+        .page-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--light);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-link:hover, .page-link.active {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+ <header>
+        <div class="container header-container">
+            <div class="logo">Med<span>Life</span></div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctors.html" class="active">Doctors</a></li>
+                    <li><a href="patients.html">Patients & Visitors</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Overlay for mobile menu -->
+            <div class="overlay"></div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="doctors-header">
+        <div class="container">
+            <h1>Meet Our Doctors</h1>
+            <p>Board-certified specialists dedicated to your health</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="index.html">Home</a> &raquo; <span>Doctors</span>
+    </div>
+
+    <!-- Doctor Search -->
+    <section class="doctor-search">
+        <div class="container">
+            <h2>Find a Doctor</h2>
+            <form class="search-form">
+                <div class="search-group">
+                    <label for="specialty">Specialty</label>
+                    <select id="specialty">
+                        <option value="">All Specialties</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="oncology">Oncology</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label for="name">Doctor Name</label>
+                    <input type="text" id="name" placeholder="Search by name">
+                </div>
+                <div class="search-group">
+                    <label for="location">Location</label>
+                    <select id="location">
+                        <option value="">All Locations</option>
+                        <option value="main">Main Hospital</option>
+                        <option value="north">North Clinic</option>
+                        <option value="south">South Clinic</option>
+                    </select>
+                </div>
+                <div class="search-group search-button">
+                    <button type="submit" class="btn">Search Doctors</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Doctors Grid -->
+    <section class="doctors-listing">
+        <div class="container">
+            <div class="doctors-grid">
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Michael Chen">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Michael Chen</h3>
+                        <span class="doctor-specialty">Cardiologist</span>
+                        <p class="doctor-bio">Specializes in interventional cardiology with over 15 years of experience in treating complex heart conditions.</p>
+                        <div class="doctor-meta">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Main Hospital</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="#" class="btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Dr. Sarah Johnson">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <span class="doctor-specialty">Pediatrician</span>
+                        <p class="doctor-bio">Board-certified pediatrician with special training in childhood allergies and immunology.</p>
+                        <div class="doctor-meta">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> North Clinic</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="#" class="btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Dr. Robert Williams">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Robert Williams</h3>
+                        <span class="doctor-specialty">Orthopedic Surgeon</span>
+                        <p class="doctor-bio">Specializes in sports medicine and minimally invasive joint replacement procedures.</p>
+                        <div class="doctor-meta">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Main Hospital</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="#" class="btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Dr. Lisa Rodriguez">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Lisa Rodriguez</h3>
+                        <span class="doctor-specialty">Neurologist</span>
+                        <p class="doctor-bio">Expert in treating neurological disorders with a focus on migraine and epilepsy management.</p>
+                        <div class="doctor-meta">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> South Clinic</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="#" class="btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Dr. David Kim">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. David Kim</h3>
+                        <span class="doctor-specialty">Oncologist</span>
+                        <p class="doctor-bio">Specializes in hematologic malignancies with research interests in immunotherapy.</p>
+                        <div class="doctor-meta">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Main Hospital</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="#" class="btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Dr. Emily Wilson">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Emily Wilson</h3>
+                        <span class="doctor-specialty">Obstetrician/Gynecologist</span>
+                        <p class="doctor-bio">Provides comprehensive women's health services with expertise in high-risk pregnancies.</p>
+                        <div class="doctor-meta">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> North Clinic</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="#" class="btn">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">Next</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Maternity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Patient Resources</h3>
+                    <ul>
+                        <li><a href="#">Patient Portal</a></li>
+                        <li><a href="#">Billing & Insurance</a></li>
+                        <li><a href="#">Medical Records</a></li>
+                        <li><a href="#">Visitor Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Health City, HC 12345</p>
+                        <p><i class="fas fa-phone"></i> (800) 555-1234</p>
+                        <p><i class="fas fa-envelope"></i> info@medlifehospital.com</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MedLife General Hospital. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
